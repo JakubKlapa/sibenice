@@ -1,18 +1,24 @@
-let slova = ["PROGRAM", "SKOLA", "PRAHA", "INTERNET"];
+let slova = ["PROGRAM", "SKOLA", "INTERNET", "MATURITA", "ELEKTROTECHNIKA", "JAVASCRIPT", "DATABAZE", "APLIKACE", "POCITAC", "KLAVESNICE", "INTERNET", "SERVER", "SIBENICE", "STUDENT", "UCITEL", "DOKUMENT", "SOUBOR", "PROJEKT", "ZABAVA", "PRAHA", "KRIZIK", "ALGORITMUS"];
 let hadaneSlovo = "";
 let uhodnutaPismena = [];
 let chyby = 0;
 let maxChyb = 6;
+let napovedaPouzita = false;
 
 function novaHra() {
     let nahodneCislo = Math.floor(Math.random() * slova.length);
     hadaneSlovo = slova[nahodneCislo];
     uhodnutaPismena = [];
     chyby = 0;
+    napovedaPouzita = false;
     
     document.getElementById("zprava").innerHTML = "";
-    document.getElementById("napoveda").disabled = false;
     document.getElementById("restart").style.display = "none";
+    let tlacitkoN = document.getElementById("napoveda");
+    tlacitkoN.disabled = false;
+    tlacitkoN.style.backgroundColor = "orange";
+    tlacitkoN.innerHTML = "Nápověda (-1 život)";
+
     vykresliSlovo();
     vykresliKlavesnici();
     vykresliStav();
@@ -52,6 +58,8 @@ function vykresliKlavesnici() {
     document.getElementById("klavesnice").innerHTML = htmlKlavesnice;
 }
 function hadej(pismeno) {
+    if (chyby >= maxChyb) return;
+
     uhodnutaPismena.push(pismeno);
     if (hadaneSlovo.includes(pismeno) == false) {
         chyby = chyby + 1;
@@ -64,6 +72,16 @@ function hadej(pismeno) {
 }
 
 function dejNapovedu() {
+    if (napovedaPouzita == true || chyby >= maxChyb) {
+        return; 
+    }
+    
+    napovedaPouzita = true;
+    let tlacitkoN = document.getElementById("napoveda");
+    tlacitkoN.disabled = true;
+    tlacitkoN.style.backgroundColor = "grey";
+    tlacitkoN.innerHTML = "Vyčerpáno";
+
     for (let i = 0; i < hadaneSlovo.length; i++) {
         let pismeno = hadaneSlovo[i];
         if (uhodnutaPismena.includes(pismeno) == false) {
