@@ -13,3 +13,19 @@ button {
     letter-spacing: 15px;
     font-size: 50px;
 }
+#napoveda {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#restart {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#klavesnice {
+    max-width: 600px;
+    margin: 0 auto;
+}

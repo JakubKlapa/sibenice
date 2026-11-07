@@ -2,20 +2,21 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Šibenice</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="game-container">
-        <h1>Šibenice</h1>
-        <div id="hangman-state">Chyby: 0 / 6</div>
-        <div id="word-display"></div>
-        <div id="keyboard"></div>
-        <button id="hint-btn">Nápověda (stojí 1 život!)</button>
-        <div id="message"></div>
-        <button id="restart-btn" style="display:none;">Hrát znovu</button>
-    </div>
+<body onload="novaHra()">
+    <h1>Šibenice</h1>
+    <h2 id="stav">Chyby: 0 / 6</h2>
+    <h1 id="slovo"></h1>
+
+    <div id="klavesnice"></div>
+    <br>
+
+        <button id="napoveda" onclick="dejNapovedu()">Nápověda (stojí 1 život!)</button>
+    <h2 id="zprava"></h2>
+    <button id="restart" onclick="novaHra()" style="display:none;">Hrát znovu</button>
     <script src="script.js"></script>
 </body>
 </html>
